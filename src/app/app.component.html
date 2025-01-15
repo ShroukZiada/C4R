@@ -1,0 +1,57 @@
+<div class="container-fulid mx-auto place-content-around">
+  <div class=" ">
+    <div class=" w-full">
+      <div *ngIf="slides && slides.length > 0" class="slider-wrapper fade">
+        <div *ngFor="let slide of slides; let i = index" [ngClass]="{'image-active':selectedIndex === i}"
+          (click)="selectcurrentImg(i)" class="slider-item relative  flex-none w-full h-dvh p-5 vh-100 ">
+          <div>
+            <div class="slider-cuption bottom-10 left-10 text-dark ">
+              <span>
+                <i class="fa-solid fa-location-dot"></i>
+                {{slide.title}}
+              </span>
+              <h3 class="text-3xl md:text-4xl lg:text-3xl font-bold mb-3 text-slide-up">{{slide.Subtitle}}</h3>
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 relative title text-slide-up"> {{slide.title}}
+              </h3>
+              <p class="font-bold text-base mt-6 dec text-slide-down">
+                {{ slide.description }}
+              </p>
+              <button
+                class="bg-transparent hover:bg-blue-500 mt-5 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent  rounded-full">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                تابع القراءة
+              </button>
+            </div>
+          </div>
+          <img class="object-cover rounded Slide-Img " [src]="slide.image" alt="Slide">
+        </div>
+        <div *ngIf="controls">
+          <button (click)="nextSlide()"
+            class="absolute  icon-slider top-1/3 right-4 transform -translate-y-1/2 text-white bg-black p-2 rounded-full opacity-75 hover:opacity-100">
+            <i class="fa-solid  icon-slider fa-chevron-right"></i>
+          </button>
+
+          <button (click)="prevSlide()"
+            class="absolute  icon-slider top-1/3 left-4 transform -translate-y-1/2 text-white bg-black p-2 rounded-full opacity-75 hover:opacity-100">
+            <i class="fa-solid icon-slider fa-chevron-left"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="indicators" class="slider-dot-cotainer relative">
+    <span *ngFor="let dot of slides; let i = index" class="dot" [ngClass]="{'active': selectedIndex === i}"
+      (click)="selectcurrentImg(i)">
+    </span>
+  </div>
+  <button (mouseenter)="pauseAutoSlide()" (mouseleave)="startAutoSlide()">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 bg-dark text-center">
+      <div class="card border max-w-sm rounded overflow-hidden shadow-lg cursor-pointer" *ngFor="let slide of slides">
+        <img [src]="slide.image" class="w-full h-32 object-cover" alt="Thumbnail">
+        <div class="p-3">
+          <div class="font-bold text-xl">{{slide.Subtitle}}</div>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
