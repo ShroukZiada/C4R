@@ -1,1 +1,1 @@
-# C4R
+# Dynamic-Slider
